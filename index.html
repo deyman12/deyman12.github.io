@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>deyman12 / Lab</title>
+    <meta
+      name="description"
+      content="A secondary GitHub workspace for experiments, forks, research, archives, backups, and things worth keeping."
+    />
+    <meta name="author" content="deyman12" />
+    <meta
+      name="theme-color"
+      content="#0a0b0d"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#f5f4f0"
+      media="(prefers-color-scheme: light)"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Prevent flash of wrong theme -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark") {
+            document.documentElement.classList.add(t);
+          } else {
+            document.documentElement.classList.add(
+              matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light",
+            );
+          }
+        } catch (_) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="deyman12 / Lab" />
+    <meta property="og:title" content="deyman12 / Lab" />
+    <meta
+      property="og:description"
+      content="A secondary GitHub workspace for experiments, forks, research, archives, backups, and things worth keeping."
+    />
+    <meta property="og:url" content="https://deyman12.github.io/" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="deyman12 / Lab" />
+    <meta
+      name="twitter:description"
+      content="A secondary GitHub workspace for experiments, forks, research, archives, backups, and things worth keeping."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "deyman12 / Lab",
+        "url": "https://deyman12.github.io/",
+        "description": "A secondary GitHub workspace for experiments, forks, research, archives, backups, and things worth keeping.",
+        "author": {
+          "@type": "Person",
+          "name": "deyman12",
+          "url": "https://github.com/deyman12"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
