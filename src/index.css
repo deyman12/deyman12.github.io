@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans:
+    "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --tracking-mega: 0.28em;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-subtle: var(--background-subtle);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-glow: var(--surface-glow);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-foreground);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-border: var(--accent-border);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+}
+
+/*
+ * ── Semantic Theme Tokens ────────────────────────────────────────────
+ *
+ * Both themes share the same variable names. The .dark class on <html>
+ * switches between palettes. Fallback values are dark-theme defaults
+ * so the page never renders unstyled.
+ */
+
+:root,
+html {
+  color-scheme: light;
+  --background: #f5f4f0;
+  --background-subtle: #eeede8;
+  --surface: #ffffff;
+  --surface-raised: #fafaf8;
+  --border: rgb(0 0 0 / 0.08);
+  --border-strong: rgb(0 0 0 / 0.15);
+  --text-primary: #1a1c1e;
+  --text-secondary: #5c636a;
+  --text-muted: #8c939a;
+  --accent: #0e8c96;
+  --accent-foreground: #f0fdfa;
+  --accent-muted: #b2e5ea;
+  --accent-border: #6cc5cd;
+  --ok: #16a34a;
+  --warn: #ca8a04;
+  --surface-glow: rgb(14 140 150 / 0.04);
+}
+
+html.dark {
+  color-scheme: dark;
+  --background: #0a0b0d;
+  --background-subtle: #0d0e10;
+  --surface: #101214;
+  --surface-raised: #15181b;
+  --border: rgb(255 255 255 / 0.07);
+  --border-strong: rgb(255 255 255 / 0.16);
+  --text-primary: #e8eaec;
+  --text-secondary: #9aa3ab;
+  --text-muted: #626b73;
+  --accent: #4fd8e4;
+  --accent-foreground: #0a0b0d;
+  --accent-muted: #2b8f99;
+  --accent-border: #2b8f99;
+  --ok: #4ade80;
+  --warn: #fbbf24;
+  --surface-glow: rgb(79 216 228 / 0.04);
+}
+
+/*
+ * ── Base Styles ──────────────────────────────────────────────────────
+ */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background-color: var(--background);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 25%, transparent);
+  color: var(--text-primary);
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+/*
+ * ── Utility Classes ──────────────────────────────────────────────────
+ */
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.cursor-blink::after {
+  content: "▌";
+  margin-left: 1px;
+  animation: blink 1.1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Theme transition — fast but perceptible */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink::after {
+    animation: none;
+  }
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition-duration: 0.01ms !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
