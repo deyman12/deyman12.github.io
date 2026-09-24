@@ -66,8 +66,7 @@ Deployed to **GitHub Pages** via GitHub Actions.
 ```
 deyman12-porto/
 ├── public/
-│   ├── data/github.json          # build-time generated repo snapshot
-│   └── favicon.svg
+│   └── favicon.svg               # (public/data/github.json is generated at build time, git-ignored)
 ├── scripts/
 │   └── fetch-github-data.ts      # build-time GitHub data generator
 ├── src/
@@ -105,6 +104,7 @@ deyman12-porto/
 │   ├── index.css                 # theme variables + Tailwind
 │   └── main.tsx
 ├── .github/workflows/deploy.yml  # CI: build → deploy to Pages
+├── docs/                         # architecture, development, data pipeline
 ├── index.html                    # flash prevention script
 ├── package.json
 ├── tsconfig.json
@@ -160,7 +160,7 @@ workflow.
 ## Deployment
 
 GitHub Actions workflow (`.github/workflows/deploy.yml`) builds and deploys to
-GitHub Pages on every push to `master`.
+GitHub Pages on every push to `main`.
 
 **Setup:**
 
@@ -170,6 +170,14 @@ GitHub Pages on every push to `master`.
 
 No manual token configuration needed — `secrets.GITHUB_TOKEN` is provided by
 GitHub Actions automatically.
+
+## Documentation
+
+| Doc                                          | Contents                                              |
+| -------------------------------------------- | ----------------------------------------------------- |
+| [docs/architecture.md](docs/architecture.md) | Layers, sections, data flow, theming                   |
+| [docs/development.md](docs/development.md)   | Setup, scripts, verification, deployment, troubleshooting |
+| [docs/github-data.md](docs/github-data.md)   | Data pipeline, snapshot/cache schemas, category rules  |
 
 ## Configuration
 
